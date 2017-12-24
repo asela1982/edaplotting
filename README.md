@@ -38,7 +38,7 @@ object = eda.univariate(df['Speed'])
 object.plot()
 ```
 
-![png](output_0_0.png)
+![png](image.png)
 
 
 ### License

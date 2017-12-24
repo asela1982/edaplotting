@@ -12,10 +12,10 @@ seaborn (required): https://seaborn.pydata.org
 
 ### Key features
 
-* Plot command that supports 4-in-1 with no requirment to import any plotting libraries :sunglasses:
-* Supports univariate and bivariate exploratory analysis on numerical variables
-* Takes only a 100 random data points for plotting(only available for univariate)
-* Includes the ECDF plot : https://en.wikipedia.org/wiki/Empirical_distribution_function
+* Mulitple plots with a single plot command with no requirment to import any plotting libraries
+* Supports univariate and bivariate exploratory analysis
+* Takes only a 100 random data points for plotting
+* Includes the ECDF plot : https://en.wikipedia.org/wiki/Empirical_distribution_function on univariate
 * Red diamonds on the ECDF plot indicate the following percentiles : 2.5,25,50(median),75,97.5
 
 ## looks cool!! But how do i use this library? :confused:
@@ -54,7 +54,6 @@ myobject.plot_bivariate() # plot the object
 
 ### Todo
 
-* Sample data for the bivariate array
 * Expand for categorical variables
 
 ### License

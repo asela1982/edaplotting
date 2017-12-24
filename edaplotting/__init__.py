@@ -11,6 +11,7 @@ sns.set()
 
 class explore():
 
+
     percentiles = np.array([2.5,25,50,75,97.5]) # Specify array of percentiles
 
     def __init__(self, **kwargs):
@@ -21,11 +22,14 @@ class explore():
             setattr(self, k, v)   
 
     def plot_univariate(self):
-        """plotting for a one-dimensional array(numeric) of measurements."""
+        """plotting for a one-dimensional array(Numerical) of measurements."""
 
         # extract a random sample of 100 data points
         if len(self.x)>=100:
-            x = self.x.sample(n=100)
+            x = self.x.sample(n=100,random_state=42)
+            
+        else:
+            x = self.x
 
         # set plot attributes   
         titlefont = {'fontname':"cursive",'weight':'bold', 'fontsize':25}
@@ -42,7 +46,7 @@ class explore():
         fig, axes = plt.subplots(nrows=2, ncols=2,figsize=(18,12))
         
         # set figure title
-        fig.suptitle("EDA on a one-dimensional array",**titlefont)
+        fig.suptitle("EDA on a one-dimensional(Numerical) array",**titlefont)
 
         # Plot the Emperical CDF
         axes[0, 0].plot(x, y, marker = '.', linestyle = 'none')
@@ -71,9 +75,18 @@ class explore():
         
         
     def plot_bivariate(self):
-        """plotting for a two-dimensional array(numeric) of measurements."""
-            
+        """plotting for a two-dimensional array(Numerical) of measurements."""
+ 
 
+        # extract a random sample of 100 data points
+        if len(self.x)>=100:
+            x = self.x.sample(n=100,random_state=42)
+            y = pd.Series(self.y , index=x.index)
+
+        else:
+            x = self.x
+            y = self.y
+    
         # set plot attributes   
         titlefont = {'fontname':"cursive",'weight':'bold', 'fontsize':25}
         axfont = {'fontname':"cursive",'weight':'bold','fontsize':20}
@@ -84,32 +97,23 @@ class explore():
         fig, axes = plt.subplots(nrows=1, ncols=3,figsize=(18,8))
         
         # set figure title
-        fig.suptitle("EDA on a two-dimensional array",**titlefont)
+        fig.suptitle("EDA on a two-dimensional(Numerical) array",**titlefont)
 
         # scatter
         # Create scatter plot with Seaborn's default setting
-        sns.regplot(x=self.x, y=self.y,color='g',marker="+",ax=axes[0])
+        sns.regplot(x, y,color='g',marker="+",ax=axes[0])
         axes[0].set_title('scatter plot', **axfont)
     
-    
-        # Create scatter plot with Seaborn's default setting
-        sns.kdeplot(self.x, self.y, ax=axes[1])
-        sns.rugplot(self.x, color="g", ax=axes[1])
-        sns.rugplot(self.y, vertical=True, ax=axes[1])
-        axes[1].set_title('KDE', **axfont)
-        
- 
         # Create kde plot with Seaborn's default setting
-        sns.kdeplot(self.x, self.y, ax=axes[1])
-        sns.rugplot(self.x, color="g", ax=axes[1])
-        sns.rugplot(self.y, vertical=True, ax=axes[1])
+        sns.kdeplot(x, y, ax=axes[1])
+        sns.rugplot(x, color="g", ax=axes[1])
+        sns.rugplot(y, vertical=True, ax=axes[1])
         axes[1].set_title('KDE', **axfont)
         
         # Create kde(n=60) plot with Seaborn's default setting
         cmap = sns.cubehelix_palette(as_cmap=True, dark=0, light=1, reverse=True)
-        sns.kdeplot(self.x, self.y, cmap=cmap, n_levels=60, shade=True,ax=axes[2])
+        sns.kdeplot(x, y, cmap=cmap, n_levels=60, shade=True,ax=axes[2])
         axes[2].set_title('KDE (n=60)', **axfont)
-    
     
         # Display the plot
         plt.show()

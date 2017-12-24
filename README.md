@@ -45,7 +45,7 @@ myobject.plot() # plot the object
 import edaplotting as eda # import the edaplotting library and assign the alias eda
 import pandas as pd # import pandas
 data = pd.read_csv('Pokemon.csv') # read in a dataset of interest 
-myobject = eda.explore(**dataframe['Speed'],dataframe['Attack']) # initialize the class with a two-dimensional array
+myobject = eda.explore(dataframe['Speed'],dataframe['Attack']) # initialize the class with a two-dimensional array
 # x and y are passed as kwargs, for bivariate both x and y are considered
 myobject.plot() # plot the object
 ```

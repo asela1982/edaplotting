@@ -17,6 +17,7 @@ seaborn (required): https://seaborn.pydata.org
 * Supports univariate exploratory analysis 
 * Takes only a 100 random data points for plotting
 * Includes the ECDF plot : https://en.wikipedia.org/wiki/Empirical_distribution_function
+* Red diamonds on the ECDF plot indicate the following percentiles : 2.5,25,50(median),75,97.5
 
 ## looks cool!! But how do i use this library? :confused:
 

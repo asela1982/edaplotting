@@ -34,7 +34,7 @@ import pandas as pd # import pandas
 data = pd.read_csv('Pokemon.csv') # read in a dataset of interest 
 myobject = eda.explore(dataframe['Speed'],dataframe['Attack']) # initialize the class with a one-dimensional array
 # x and y are passed as kwargs, for univariate only x is considered
-myobject.plot() # plot the object
+myobject.plot_univariate() # plot the object
 ```
 
 ![png](image_univariate.png)
@@ -47,7 +47,7 @@ import pandas as pd # import pandas
 data = pd.read_csv('Pokemon.csv') # read in a dataset of interest 
 myobject = eda.explore(dataframe['Speed'],dataframe['Attack']) # initialize the class with a two-dimensional array
 # x and y are passed as kwargs, for bivariate both x and y are considered
-myobject.plot() # plot the object
+myobject.plot_bivariate() # plot the object
 ```
 
 ![png](image_bivariate.png)

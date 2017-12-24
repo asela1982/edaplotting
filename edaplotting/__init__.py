@@ -14,14 +14,14 @@ class explore():
     percentiles = np.array([2.5,25,50,75,97.5]) # Specify array of percentiles
 
     def __init__(self, **kwargs):
-        valid_kwargs = ['x', 'y','dataframe']
+        valid_kwargs = ['x', 'y']
         for k, v in kwargs.items():
             if k not in valid_kwargs:
                 raise TypeError("Invalid keyword argument %s" % k)
             setattr(self, k, v)   
 
     def plot_univariate(self):
-        """plotting for a one-dimensional array of measurements."""
+        """plotting for a one-dimensional array(numeric) of measurements."""
 
         # extract a random sample of 100 data points
         if len(self.x)>=100:
@@ -39,7 +39,7 @@ class explore():
         y = np.arange(1,n+1) / n # y-data for the ECDF: y
 
         # subplots
-        fig, axes = plt.subplots(nrows=2, ncols=2,figsize=(15,12))
+        fig, axes = plt.subplots(nrows=2, ncols=2,figsize=(18,12))
         
         # set figure title
         fig.suptitle("EDA on a one-dimensional array",**titlefont)
@@ -71,8 +71,9 @@ class explore():
         
         
     def plot_bivariate(self):
-        """plotting for a two-dimensional array of measurements."""
+        """plotting for a two-dimensional array(numeric) of measurements."""
             
+
         # set plot attributes   
         titlefont = {'fontname':"cursive",'weight':'bold', 'fontsize':25}
         axfont = {'fontname':"cursive",'weight':'bold','fontsize':20}
@@ -80,39 +81,35 @@ class explore():
         
 
         # subplots
-        fig, axes = plt.subplots(nrows=2, ncols=2,figsize=(15,14))
+        fig, axes = plt.subplots(nrows=1, ncols=3,figsize=(18,8))
         
         # set figure title
         fig.suptitle("EDA on a two-dimensional array",**titlefont)
 
         # scatter
         # Create scatter plot with Seaborn's default setting
-        sns.regplot(x=self.x, y=self.y, data=self.dataframe,ax=axes[0,0],color='g',marker="+")
-        axes[0, 0].set_title('scatter plot', **axfont)
+        sns.regplot(x=self.x, y=self.y,color='g',marker="+",ax=axes[0])
+        axes[0].set_title('scatter plot', **axfont)
+    
+    
+        # Create scatter plot with Seaborn's default setting
+        sns.kdeplot(self.x, self.y, ax=axes[1])
+        sns.rugplot(self.x, color="g", ax=axes[1])
+        sns.rugplot(self.y, vertical=True, ax=axes[1])
+        axes[1].set_title('KDE', **axfont)
         
-        
-        # Create hist plot with Seaborn's default setting
-        sns.distplot(self.x,ax=axes[0, 1],label=self.x.name)
-        sns.distplot(self.y,ax=axes[0, 1],label=self.y.name)
-        
-        v1 = self.x.mean()
-        v2 = self.y.mean()
-        axes[0, 1].vlines(v1,0,1,colors='blue',linestyles='dashed')
-        axes[0, 1].vlines(v2,0,1,colors='green',linestyles='dashed')
-        axes[0, 1].set_title('Histogram', **axfont)
-        axes[0, 1].legend()
-        
+ 
         # Create kde plot with Seaborn's default setting
+        sns.kdeplot(self.x, self.y, ax=axes[1])
+        sns.rugplot(self.x, color="g", ax=axes[1])
+        sns.rugplot(self.y, vertical=True, ax=axes[1])
+        axes[1].set_title('KDE', **axfont)
+        
+        # Create kde(n=60) plot with Seaborn's default setting
         cmap = sns.cubehelix_palette(as_cmap=True, dark=0, light=1, reverse=True)
-        sns.kdeplot(self.x, self.y, cmap=cmap, n_levels=60, shade=True,ax=axes[1,0])
-        axes[1, 0].set_title('KDE n=60', **axfont)
-        
-        # Create kde plot with Seaborn's default setting
-        sns.kdeplot(self.x, self.y, ax=axes[1,1])
-        sns.rugplot(self.x, color="g", ax=axes[1,1])
-        sns.rugplot(self.y, vertical=True, ax=axes[1,1])
-        axes[1, 1].set_title('KDE', **axfont)
-        
-        
+        sns.kdeplot(self.x, self.y, cmap=cmap, n_levels=60, shade=True,ax=axes[2])
+        axes[2].set_title('KDE (n=60)', **axfont)
+    
+    
         # Display the plot
         plt.show()

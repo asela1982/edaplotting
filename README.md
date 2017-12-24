@@ -39,7 +39,7 @@ myobject.plot() # plot the object
 
 ![png](image_univariate.png)
 
-### Usage for univariate EDA
+### Usage for bivariate EDA
 
 ```python
 import edaplotting as eda # import the edaplotting library and assign the alias eda

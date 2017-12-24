@@ -27,22 +27,33 @@ seaborn (required): https://seaborn.pydata.org
 pip install edaplotting
 ```
 
-### Usage
+### Usage for univariate EDA
 
 ```python
 import edaplotting as eda # import the edaplotting library and assign the alias eda
 import pandas as pd # import pandas
-df = pd.read_csv('Pokemon.csv') # read in a dataset of interest 
-object = eda.univariate(df['Speed']) # initialize the class with an one-dimensional array
-object.plot() # plot the object
+data = pd.read_csv('Pokemon.csv') # read in a dataset of interest 
+myobject = eda.explore(data['Speed']) # initialize the class with a one-dimensional array
+myobject.plot() # plot the object
 ```
 
-![png](image.png)
+![png](image_univariate.png)
 
+### Usage for univariate EDA
+
+```python
+import edaplotting as eda # import the edaplotting library and assign the alias eda
+import pandas as pd # import pandas
+data = pd.read_csv('Pokemon.csv') # read in a dataset of interest 
+myobject = eda.explore(dataframe['Speed'],dataframe['Attack'],dataframe=data) # initialize the class with a two-dimensional array
+myobject.plot() # plot the object
+```
+
+![png](image_bivariate.png)
 
 ### Todo
 
-Expand to bivariate and multivariate exploratory analysis
+Sample the bivariate array
 
 ### License
 

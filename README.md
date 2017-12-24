@@ -11,7 +11,14 @@ numpy (required): http://numpy.scipy.org
 matplotlib (required): http://matplotlib.sourceforge.net  
 seaborn (required): https://seaborn.pydata.org  
 
-## Example
+### Key features
+
+* Plot command that supports 4-in-1 with no requirment to import any plotting libraries :sunglasses:
+* Supports univariate exploratory analysis 
+* Takes only a 100 random data points for plotting
+* Includes the ECDF plot : https://en.wikipedia.org/wiki/Empirical_distribution_function
+
+## looks cool!! But how do i use this library? :confused:
 
 ### Installation
 
@@ -22,24 +29,19 @@ pip install edaplotting
 ### Usage
 
 ```python
-# import the edaplotting library
-import edaplotting as eda
-
-# import pandas
-import pandas as pd
-
-# read in the dataset of interest 
-df = pd.read_csv('Pokemon.csv')
-
-# initialize the class with an one-dimensional array
-object = eda.univariate(df['Speed'])
-
-# plot the object
-object.plot()
+import edaplotting as eda # import the edaplotting library and assign the alias eda
+import pandas as pd # import pandas
+df = pd.read_csv('Pokemon.csv') # read in a dataset of interest 
+object = eda.univariate(df['Speed']) # initialize the class with an one-dimensional array
+object.plot() # plot the object
 ```
 
 ![png](image.png)
 
+
+### Todo
+
+Expand to bivariate and multivariate exploratory analysis
 
 ### License
 

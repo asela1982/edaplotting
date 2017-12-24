@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='edaplotting',
-      version='0.3',
+      version='0.4',
       description='plotting for exploratory data analysis',
       url='http://github.com/asela1982/edaplotting',
       author='Asela Dassanayake',
